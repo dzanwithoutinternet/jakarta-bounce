@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var turn_speed = 10.0
 @export var speed = 220.0
 @export var bounce_boost = 1.3
 @export var max_speed = 450.0
@@ -34,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		current_speed = min(current_speed * bounce_boost, max_speed)
 		
 	rotation = move_direction.angle()
-		
+
 
 
 

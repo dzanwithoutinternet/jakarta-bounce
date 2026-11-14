@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://djxn74evxgkly"]
+
+[ext_resource type="Script" uid="uid://yotlfj5lbtji" path="res://scripts/Player.gd" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://bptp58wrcwukf" path="res://assets/cars/cars.png" id="2_0e48y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_woch1"]
+size = Vector2(42, 26)
+
+[node name="Node2D" type="Node2D" unique_id=1275204156]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1672550752]
+script = ExtResource("1_wtcfe")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1966777572]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+texture = ExtResource("2_0e48y")
+region_enabled = true
+region_rect = Rect2(257, 57.027077, 26, 42.972923)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1832901243]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_woch1")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=161949151]

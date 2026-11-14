@@ -1,25 +1,49 @@
 [gd_scene format=3 uid="uid://djxn74evxgkly"]
 
-[ext_resource type="Script" uid="uid://yotlfj5lbtji" path="res://scripts/Player.gd" id="1_wtcfe"]
-[ext_resource type="Texture2D" uid="uid://bptp58wrcwukf" path="res://assets/cars/cars.png" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://yotlfj5lbtji" path="res://scripts/Player.gd" id="1_epypp"]
+[ext_resource type="Texture2D" uid="uid://dvidt43q3kiqg" path="res://assets/sprite_kelompok_kita_nih/mobil.png" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://dgdvy71ssfgdm" path="res://assets/kenney_tiny-city/Tiles/tile_0072.png" id="3_q6r6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_woch1"]
 size = Vector2(42, 26)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_os3dv"]
+size = Vector2(43.666668, 26.000002)
+
 [node name="Node2D" type="Node2D" unique_id=1275204156]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1672550752]
-script = ExtResource("1_wtcfe")
+motion_mode = 1
+script = ExtResource("1_epypp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1966777572]
 position = Vector2(-1, 0)
 rotation = 1.5707964
-texture = ExtResource("2_0e48y")
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_0hol4")
 region_enabled = true
-region_rect = Rect2(257, 57.027077, 26, 42.972923)
+region_rect = Rect2(64, 0, 896, 1536)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1832901243]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_woch1")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=161949151]
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=222994353]
+position = Vector2(146, 1)
+rotation = 3.1415927
+scale = Vector2(3, 3)
+texture = ExtResource("3_q6r6c")
+region_enabled = true
+region_rect = Rect2(257, 57.027077, 26, 42.972923)
+
+[node name="TembokTes" type="StaticBody2D" parent="Sprite2D" unique_id=1330384601]
+position = Vector2(-4.371139e-08, -1)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/TembokTes" unique_id=1414938949]
+position = Vector2(-1.1666669, -1.9073486e-06)
+shape = SubResource("RectangleShape2D_os3dv")

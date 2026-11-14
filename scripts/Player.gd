@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 		if input_vector != Vector2.ZERO:
 			move_direction = input_vector
 		
+		
 	if current_speed > speed:
 		current_speed = move_toward(current_speed, speed, 90.0 * delta)
 	

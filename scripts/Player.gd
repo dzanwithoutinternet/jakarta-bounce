@@ -1,41 +1,36 @@
 extends CharacterBody2D
 
-@export var turn_speed = 10.0
-@export var speed = 220.0
+@export var speed= 220.0
+@export var turn_speed = 8.0 
 @export var bounce_boost = 1.3
 @export var max_speed = 450.0
 
 var current_speed = 220.0
 var move_direction = Vector2.RIGHT
-var bounce_timer = 0.0
 
 func _ready() -> void:
 	current_speed = speed
-	
-func _physics_process(delta: float) -> void:
-	if bounce_timer > 0.0:
-		bounce_timer -= delta
-	else:
-		var input_vector: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		if input_vector != Vector2.ZERO:
-			move_direction = input_vector
-		
-		
-	if current_speed > speed:
-		current_speed = move_toward(current_speed, speed, 90.0 * delta)
-	
-	velocity = move_direction * speed
-	
-	var collision =  move_and_collide(velocity * delta)
-	if collision:
-		global_position += collision.get_normal() * 2.0
-		var bounce_direction = velocity.bounce(collision.get_normal())
-		move_direction = bounce_direction.normalized()
-		bounce_timer = 0.1
-		current_speed = min(current_speed * bounce_boost, max_speed)
-		
-	rotation = move_direction.angle()
 
+func _physics_process(delta: float) -> void:
+	var input_vector: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if input_vector != Vector2.ZERO:
+		move_direction = move_direction.lerp(input_vector, turn_speed * delta).normalized()
+
+	if current_speed > speed:
+		current_speed = move_toward(current_speed, speed, 80.0 * delta)
+
+	var target_velocity = move_direction * current_speed
+	velocity = velocity.lerp(target_velocity, 12.0 * delta)
+
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		global_position += collision.get_normal() * 2.5
+		
+		var bounce_dir = velocity.bounce(collision.get_normal())
+		move_direction = bounce_dir.normalized()
+		current_speed = min(current_speed * bounce_boost, max_speed)
+
+	rotation = lerp_angle(rotation, move_direction.angle(), 14.0 * delta)
 
 
 

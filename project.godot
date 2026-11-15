@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jakarta Bounce: Kurir Setoran - Kelompok Gofur77 Project Haven HackClub"
-run/main_scene="uid://bwtqkrm2ifx3i"
+run/main_scene="uid://cp7dxjitfl754"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

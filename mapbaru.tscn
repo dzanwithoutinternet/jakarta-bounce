@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://cp7dxjitfl754"]
+
+[ext_resource type="PackedScene" uid="uid://t5lbgquhjq1r" path="res://assets/tile_map_layer_havern_map/tile_map_layer_havern_map.tscn" id="1_l33bi"]
+[ext_resource type="Script" uid="uid://yotlfj5lbtji" path="res://scripts/Player.gd" id="2_midhx"]
+[ext_resource type="Texture2D" uid="uid://cb1jtvsueul87" path="res://mobil (1).png" id="3_yj6td"]
+[ext_resource type="Texture2D" uid="uid://crygfb2bv0lb6" path="res://assets/kenney_tiny-city/Sample.png" id="4_52w7c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_woch1"]
+size = Vector2(42, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_os3dv"]
+size = Vector2(138.91666, 78.5)
+
+[sub_resource type="TileSet" id="TileSet_5i8vy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l33bi"]
+size = Vector2(29, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ac165"]
+size = Vector2(61, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38mqi"]
+size = Vector2(78, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_an82v"]
+size = Vector2(45, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxby4"]
+size = Vector2(46, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4fx0"]
+size = Vector2(75, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd8eg"]
+size = Vector2(28, 44)
+
+[node name="Node2D" type="Node2D" unique_id=1275204156]
+
+[node name="TileMapLayer" parent="." unique_id=2057798879 instance=ExtResource("1_l33bi")]
+position = Vector2(-161, -218)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1672550752]
+position = Vector2(-85, 0)
+motion_mode = 1
+script = ExtResource("2_midhx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1966777572]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_yj6td")
+region_enabled = true
+region_rect = Rect2(64, 0, 896, 1536)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1832901243]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_woch1")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=161949151]
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=222994353]
+position = Vector2(528, -48)
+texture = ExtResource("4_52w7c")
+region_enabled = true
+region_rect = Rect2(106, 16, 94, 160)
+
+[node name="TembokTes" type="StaticBody2D" parent="Sprite2D" unique_id=1330384601]
+position = Vector2(-4.371139e-08, -1)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/TembokTes" unique_id=1414938949]
+position = Vector2(-3.541668, 0.75)
+shape = SubResource("RectangleShape2D_os3dv")
+
+[node name="Gedung_rumah" type="TileMapLayer" parent="." unique_id=493127590]
+position = Vector2(0, 1)
+tile_set = SubResource("TileSet_5i8vy")
+
+[node name="Gedung_tabrak" type="StaticBody2D" parent="." unique_id=1649712133]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=70075060]
+position = Vector2(-0.5, -65)
+shape = SubResource("RectangleShape2D_l33bi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=1023029329]
+position = Vector2(63.5, -73.5)
+shape = SubResource("RectangleShape2D_ac165")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=997349267]
+position = Vector2(-153, -90.5)
+shape = SubResource("RectangleShape2D_38mqi")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=2084320553]
+position = Vector2(-184.5, -186)
+shape = SubResource("RectangleShape2D_an82v")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=804250646]
+position = Vector2(-121, -184.5)
+shape = SubResource("RectangleShape2D_nxby4")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=222708170]
+position = Vector2(56.5, -159.5)
+shape = SubResource("RectangleShape2D_i4fx0")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=495982408]
+position = Vector2(191, -146)
+shape = SubResource("RectangleShape2D_nd8eg")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=1213166294]
+position = Vector2(238, -145)
+shape = SubResource("RectangleShape2D_nd8eg")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=1361895156]
+position = Vector2(191, -66)
+shape = SubResource("RectangleShape2D_nd8eg")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Gedung_tabrak" unique_id=1905692881]
+position = Vector2(237, -67)
+shape = SubResource("RectangleShape2D_nd8eg")

@@ -11,6 +11,7 @@ var timer_api_bumper = 0.0
 var has_package = false
 var total_cuan = 0
 var sisa_waktu = 45.0
+var game_selesai = false
 
 func _ready():
 	current_speed = speed
@@ -22,11 +23,25 @@ func _ready():
 		$Api_knalpot2.visible = false
 
 	if has_node("../Paket"):
-		$"../Paket".body_entered.connect(_on_paket_entered)
+		var pkt = get_node("../Paket")
+		if not pkt.body_entered.is_connected(_on_paket_body_entered):
+			pkt.body_entered.connect(_on_paket_body_entered)
 	if has_node("../Rumah_tujuan"):
-		$"../Rumah_tujuan".body_entered.connect(_on_rumah_entered)
+		var rmh = get_node("../Rumah_tujuan")
+		if not rmh.body_entered.is_connected(_on_rumah_tujuan_body_entered):
+			rmh.body_entered.connect(_on_rumah_tujuan_body_entered)
+
+	if has_node("../HUD/GameOverOverlay/TombolRetry"):
+		$"../HUD/GameOverOverlay/TombolRetry".pressed.connect(_on_retry_pressed)
+	if has_node("../HUD/AwardOverlay/TombolMainLagi"):
+		$"../HUD/AwardOverlay/TombolMainLagi".pressed.connect(_on_retry_pressed)
 
 func _physics_process(delta):
+	if game_selesai:
+		if Input.is_action_just_pressed("ui_accept"):
+			get_tree().reload_current_scene()
+		return
+
 	var input_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if input_vector != Vector2.ZERO:
 		facing_direction = facing_direction.lerp(input_vector, turn_speed * delta).normalized()
@@ -71,22 +86,38 @@ func _physics_process(delta):
 	sisa_waktu -= delta
 	if sisa_waktu <= 0.0:
 		sisa_waktu = 0.0
-		get_tree().reload_current_scene()
+		game_selesai = true
+		if has_node("../HUD/GameOverOverlay"):
+			$"../HUD/GameOverOverlay".visible = true
+		if has_node("../HUD/GameOverOverlay/SuaraKalah"):
+			$"../HUD/GameOverOverlay/SuaraKalah".play()
 
 	if has_node("../HUD/Label_Waktu"):
 		$"../HUD/Label_Waktu".text = "Waktu: " + str(int(sisa_waktu)) + "s"
 	if has_node("../HUD/LabelCuan"):
 		$"../HUD/LabelCuan".text = "SETORAN: Rp " + str(total_cuan)
 
-func _on_paket_entered(body):
+func _on_paket_body_entered(body):
 	if body == self:
 		has_package = true
 		if has_node("../Paket"):
 			$"../Paket".queue_free()
 
-func _on_rumah_entered(body):
+func _on_paket_entered(body):
+	_on_paket_body_entered(body)
+
+func _on_rumah_tujuan_body_entered(body):
 	if body == self and has_package:
 		has_package = false
 		total_cuan += 50000
-		sisa_waktu += 10.0
-		current_speed = min(current_speed * 1.3, max_speed)
+		game_selesai = true
+		if has_node("../HUD/AwardOverlay"):
+			$"../HUD/AwardOverlay".visible = true
+			if has_node("../HUD/AwardOverlay/LabelSkor"):
+				$"../HUD/AwardOverlay/LabelSkor".text = "TOTAL CUAN: Rp " + str(total_cuan)
+
+func _on_rumah_entered(body):
+	_on_rumah_tujuan_body_entered(body)
+
+func _on_retry_pressed():
+	get_tree().reload_current_scene()

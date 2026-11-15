@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dk1wemnejd763"
+path="res://.godot/imported/Suara mobil pas nabrak + mantul.mp3-0a8544126d983c93d9602a0571241931.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Suara mobil pas nabrak + mantul.mp3"
+dest_files=["res://.godot/imported/Suara mobil pas nabrak + mantul.mp3-0a8544126d983c93d9602a0571241931.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
